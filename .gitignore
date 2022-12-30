@@ -21,3 +21,4 @@
 /.idea/
 /public/uploads
 /config/secrets/dev/dev.decrypt.private.php
+/config/secrets/test/test.decrypt.private.php
