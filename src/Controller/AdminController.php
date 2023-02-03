@@ -66,7 +66,7 @@ class AdminController extends AbstractController
         string $uri,
         StoreInterface $store
     ): Response {
-        if ('prod' === $kernel->getEnvironment()) {
+        if ($kernel->getEnvironment() === 'prod') {
             return new Response('KO', 400);
         }
 

@@ -28,7 +28,7 @@ class CommentReviewNotification extends Notification implements EmailNotificatio
 
     public function asChatMessage(RecipientInterface $recipient, string $transport = null): ?ChatMessage
     {
-        if ('slack' !== $transport) {
+        if ($transport !== 'slack') {
             return null;
         }
 

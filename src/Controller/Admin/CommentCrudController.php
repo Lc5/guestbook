@@ -57,7 +57,7 @@ class CommentCrudController extends AbstractCrudController
             'years' => range(date('Y'), date('Y') + 5),
             'widget' => 'single_text',
         ]);
-        if (Crud::PAGE_EDIT === $pageName) {
+        if ($pageName === Crud::PAGE_EDIT) {
             yield $createdAt->setFormTypeOption('disabled', true);
         } else {
             yield $createdAt;

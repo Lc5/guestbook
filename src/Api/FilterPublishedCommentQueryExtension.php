@@ -20,7 +20,7 @@ class FilterPublishedCommentQueryExtension implements QueryCollectionExtensionIn
         Operation $operation = null,
         array $context = []
     ): void {
-        if (Comment::class === $resourceClass) {
+        if ($resourceClass === Comment::class) {
             $queryBuilder->andWhere(sprintf("%s.state = 'published'", $queryBuilder->getRootAliases()[0]));
         }
     }
@@ -33,7 +33,7 @@ class FilterPublishedCommentQueryExtension implements QueryCollectionExtensionIn
         Operation $operation = null,
         array $context = []
     ): void {
-        if (Comment::class === $resourceClass) {
+        if ($resourceClass === Comment::class) {
             $queryBuilder->andWhere(sprintf("%s.state = 'published'", $queryBuilder->getRootAliases()[0]));
         }
     }
