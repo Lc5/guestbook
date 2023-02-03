@@ -62,7 +62,7 @@ class Conference implements \Stringable
         return $this->city . ' ' . $this->year;
     }
 
-    public function computeSlug(SluggerInterface $slugger)
+    public function computeSlug(SluggerInterface $slugger): void
     {
         if (!$this->slug || $this->slug === '-') {
             $this->slug = (string)$slugger->slug((string)$this)->lower();

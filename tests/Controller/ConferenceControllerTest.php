@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ConferenceControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testIndex(): void
     {
         $client = static::createClient();
         $client->request('GET', '/en/');
@@ -19,7 +19,7 @@ class ConferenceControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h2', 'Give your feedback');
     }
 
-    public function testConferencePage()
+    public function testConferencePage(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/en/');
@@ -34,7 +34,7 @@ class ConferenceControllerTest extends WebTestCase
         $this->assertSelectorExists('div:contains("There is one comment")');
     }
 
-    public function testCommentSubmission()
+    public function testCommentSubmission(): void
     {
         $client = static::createClient();
         $client->request('GET', '/en/conference/amsterdam-2019');

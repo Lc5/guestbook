@@ -24,7 +24,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface, \Strin
     private array $roles = [];
 
     /**
-     * @var string The hashed password
+     * @var string|null The hashed password
      */
     #[ORM\Column]
     private ?string $password = null;
@@ -98,7 +98,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface, \Strin
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;

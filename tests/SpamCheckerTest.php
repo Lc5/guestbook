@@ -33,7 +33,7 @@ class SpamCheckerTest extends TestCase
     /**
      * @dataProvider provideComments
      */
-    public function testSpamScore(int $expectedScore, ResponseInterface $response, Comment $comment, array $context)
+    public function testSpamScore(int $expectedScore, ResponseInterface $response, Comment $comment, array $context): void
     {
         $client = new MockHttpClient([$response]);
         $checker = new SpamChecker($client, 'abcde');
