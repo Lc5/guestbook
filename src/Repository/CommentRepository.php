@@ -35,7 +35,7 @@ class CommentRepository extends ServiceEntityRepository
 
     public function deleteOldRejected(): int
     {
-            return $this->getOldRejectedQueryBuilder()->delete()->getQuery()->execute();
+        return $this->getOldRejectedQueryBuilder()->delete()->getQuery()->execute();
     }
 
     private function getOldRejectedQueryBuilder(): QueryBuilder

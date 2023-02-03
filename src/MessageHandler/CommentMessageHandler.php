@@ -61,8 +61,10 @@ class CommentMessageHandler
             $this->commentStateMachine->apply($comment, 'optimize');
             $this->entityManager->flush();
         } elseif ($this->logger) {
-            $this->logger->debug('Dropping comment message',
-                ['comment' => $comment->getId(), 'state' => $comment->getState()]);
+            $this->logger->debug(
+                'Dropping comment message',
+                ['comment' => $comment->getId(), 'state' => $comment->getState()]
+            );
         }
     }
 }

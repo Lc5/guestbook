@@ -89,7 +89,9 @@ class ConferenceController extends AbstractController
             ];
 
             $reviewUrl = $this->generateUrl(
-                'review_comment', ['id' => $comment->getId()], UrlGeneratorInterface::ABSOLUTE_URL
+                'review_comment',
+                ['id' => $comment->getId()],
+                UrlGeneratorInterface::ABSOLUTE_URL
             );
             $this->bus->dispatch(new CommentMessage($comment->getId(), $reviewUrl, $context));
 
@@ -106,7 +108,8 @@ class ConferenceController extends AbstractController
         if ($form->isSubmitted()) {
             $notifier->send(
                 new Notification(
-                    'Can you check your submission? There are some problems with it.',  ['browser']
+                    'Can you check your submission? There are some problems with it.',
+                    ['browser']
                 )
             );
         }

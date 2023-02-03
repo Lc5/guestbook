@@ -32,17 +32,24 @@ class CommentReviewNotification extends Notification implements EmailNotificatio
 
         $message = ChatMessage::fromNotification($this, $recipient, $transport);
         $message->subject($this->getSubject());
-        $message->options((new SlackOptions())
+        $message->options(
+            (new SlackOptions())
             ->iconEmoji('tada')
             ->iconUrl('https://guestbook.example.com')
             ->username('Guestbook')
             ->block((new SlackSectionBlock())->text($this->getSubject()))
             ->block(new SlackDividerBlock())
-            ->block((new SlackSectionBlock())
-                ->text(sprintf('%s (%s) says: %s', $this->comment->getAuthor(), $this->comment->getEmail(),
-                    $this->comment->getText()))
+            ->block(
+                (new SlackSectionBlock())
+                ->text(sprintf(
+                    '%s (%s) says: %s',
+                    $this->comment->getAuthor(),
+                    $this->comment->getEmail(),
+                    $this->comment->getText()
+                ))
             )
-            ->block((new SlackActionsBlock())
+            ->block(
+                (new SlackActionsBlock())
                 ->button('Accept', $this->reviewUrl, 'primary')
                 ->button('Reject', $this->reviewUrl . '?reject=1', 'danger')
             )
