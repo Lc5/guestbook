@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
@@ -17,12 +18,15 @@ return function (ECSConfig $ecsConfig): void {
 
     $ecsConfig->sets([
         SetList::CLEAN_CODE,
+        SetList::COMMENTS,
+        SetList::CONTROL_STRUCTURES,
+        SetList::DOCBLOCK,
+        SetList::DOCTRINE_ANNOTATIONS,
+        SetList::NAMESPACES,
+        SetList::PHPUNIT,
         SetList::PSR_12,
-//        SetList::COMMENTS,
-//        SetList::DOCBLOCK,
-//        SetList::DOCTRINE_ANNOTATIONS,
-//        SetList::NAMESPACES,
-//        SetList::PHPUNIT,
         SetList::STRICT,
     ]);
+
+    $ecsConfig->skip([AssignmentInConditionSniff::class]);
 };
