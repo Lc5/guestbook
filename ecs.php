@@ -16,7 +16,13 @@ return function (ECSConfig $ecsConfig): void {
     ]);
 
     $ecsConfig->sets([
+        SetList::CLEAN_CODE,
         SetList::PSR_12,
+//        SetList::COMMENTS,
+//        SetList::DOCBLOCK,
+//        SetList::DOCTRINE_ANNOTATIONS,
+//        SetList::NAMESPACES,
+//        SetList::PHPUNIT,
         SetList::STRICT,
     ]);
 };
