@@ -10,10 +10,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class SpamChecker
 {
-    private $endpoint;
+    private readonly string $endpoint;
 
     public function __construct(
-        private HttpClientInterface $client,
+        private readonly HttpClientInterface $client,
         #[Autowire('%env(AKISMET_KEY)%')] string $akismetKey,
     ) {
         $this->endpoint = sprintf('https://%s.rest.akismet.com/1.1/comment-check', $akismetKey);

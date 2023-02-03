@@ -20,8 +20,8 @@ use Symfony\Component\Notifier\Recipient\RecipientInterface;
 class CommentReviewNotification extends Notification implements EmailNotificationInterface, ChatNotificationInterface
 {
     public function __construct(
-        private Comment $comment,
-        private string $reviewUrl,
+        private readonly Comment $comment,
+        private readonly string $reviewUrl,
     ) {
         parent::__construct('New comment posted');
     }
@@ -32,7 +32,7 @@ class CommentReviewNotification extends Notification implements EmailNotificatio
             return null;
         }
 
-        $message = ChatMessage::fromNotification($this, $recipient, $transport);
+        $message = ChatMessage::fromNotification($this);
         $message->subject($this->getSubject());
         $message->options(
             (new SlackOptions())
@@ -62,7 +62,7 @@ class CommentReviewNotification extends Notification implements EmailNotificatio
 
     public function asEmailMessage(EmailRecipientInterface $recipient, string $transport = null): ?EmailMessage
     {
-        $message = EmailMessage::fromNotification($this, $recipient, $transport);
+        $message = EmailMessage::fromNotification($this, $recipient);
         $message->getMessage()
             ->htmlTemplate('emails/comment_notification.html.twig')
             ->context(['comment' => $this->comment])

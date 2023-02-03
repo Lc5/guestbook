@@ -10,11 +10,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ConferenceEntityListener
 {
-    private $slugger;
-
-    public function __construct(SluggerInterface $slugger)
+    public function __construct(private readonly SluggerInterface $slugger)
     {
-        $this->slugger = $slugger;
     }
 
     public function prePersist(Conference $conference, LifecycleEventArgs $event): void

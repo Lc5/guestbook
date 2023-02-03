@@ -22,9 +22,9 @@ use Twig\Environment;
 class AdminController extends AbstractController
 {
     public function __construct(
-        private Environment $twig,
-        private EntityManagerInterface $entityManager,
-        private MessageBusInterface $bus,
+        private readonly Environment $twig,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly MessageBusInterface $bus,
     ) {
     }
 

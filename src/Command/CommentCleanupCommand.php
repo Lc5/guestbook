@@ -16,7 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class CommentCleanupCommand extends Command
 {
     public function __construct(
-        private CommentRepository $commentRepository,
+        private readonly CommentRepository $commentRepository,
     ) {
         parent::__construct();
     }

@@ -12,7 +12,7 @@ class ImageOptimizer
     private const MAX_WIDTH = 200;
     private const MAX_HEIGHT = 150;
 
-    private $imagine;
+    private readonly \Imagine\Gd\Imagine $imagine;
 
     public function __construct()
     {

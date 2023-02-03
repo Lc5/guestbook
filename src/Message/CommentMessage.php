@@ -9,9 +9,9 @@ namespace App\Message;
 class CommentMessage
 {
     public function __construct(
-        private int $id,
-        private string $reviewUrl,
-        private array $context = [],
+        private readonly int $id,
+        private readonly string $reviewUrl,
+        private readonly array $context = [],
     ) {
     }
 

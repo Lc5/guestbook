@@ -26,9 +26,9 @@ use Twig\Environment;
 class ConferenceController extends AbstractController
 {
     public function __construct(
-        private Environment $twig,
-        private EntityManagerInterface $entityManager,
-        private MessageBusInterface $bus,
+        private readonly Environment $twig,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly MessageBusInterface $bus,
     ) {
     }
 
@@ -74,7 +74,7 @@ class ConferenceController extends AbstractController
                 $filename = bin2hex(random_bytes(6)) . '.' . $photo->guessExtension();
                 try {
                     $photo->move($photoDir, $filename);
-                } catch (FileException $e) {
+                } catch (FileException) {
                     // unable to upload the photo, give up
                 }
                 $comment->setPhotoFilename($filename);

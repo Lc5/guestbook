@@ -25,7 +25,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
     order: ['year' => 'DESC', 'city' => 'ASC'],
     paginationEnabled: false,
 )]
-class Conference
+class Conference implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

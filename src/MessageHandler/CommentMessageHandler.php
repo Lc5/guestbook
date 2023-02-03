@@ -21,15 +21,15 @@ use Symfony\Component\Workflow\WorkflowInterface;
 class CommentMessageHandler
 {
     public function __construct(
-        private EntityManagerInterface $entityManager,
-        private SpamChecker $spamChecker,
-        private CommentRepository $commentRepository,
-        private MessageBusInterface $bus,
-        private WorkflowInterface $commentStateMachine,
-        private NotifierInterface $notifier,
-        private ImageOptimizer $imageOptimizer,
-        #[Autowire('%photo_dir%')] private string $photoDir,
-        private ?LoggerInterface $logger = null,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly SpamChecker $spamChecker,
+        private readonly CommentRepository $commentRepository,
+        private readonly MessageBusInterface $bus,
+        private readonly WorkflowInterface $commentStateMachine,
+        private readonly NotifierInterface $notifier,
+        private readonly ImageOptimizer $imageOptimizer,
+        #[Autowire('%photo_dir%')] private readonly string $photoDir,
+        private readonly ?LoggerInterface $logger = null,
     ) {
     }
 

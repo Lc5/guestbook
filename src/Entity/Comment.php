@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     paginationEnabled: false,
 )]
 #[ApiFilter(SearchFilter::class, properties: ['conference' => 'exact'])]
-class Comment
+class Comment implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
