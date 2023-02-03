@@ -130,11 +130,9 @@ class Conference implements \Stringable
 
     public function removeComment(Comment $comment): self
     {
-        if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getConference() === $this) {
-                $comment->setConference(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->comments->removeElement($comment) && $comment->getConference() === $this) {
+            $comment->setConference(null);
         }
 
         return $this;

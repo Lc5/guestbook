@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MessageHandler;
 
+use App\Entity\Comment;
 use App\ImageOptimizer;
 use App\Message\CommentMessage;
 use App\Notification\CommentReviewNotification;
@@ -36,7 +37,7 @@ class CommentMessageHandler
     public function __invoke(CommentMessage $message)
     {
         $comment = $this->commentRepository->find($message->getId());
-        if (!$comment) {
+        if (!$comment instanceof Comment) {
             return;
         }
 
@@ -60,7 +61,7 @@ class CommentMessageHandler
             }
             $this->commentStateMachine->apply($comment, 'optimize');
             $this->entityManager->flush();
-        } elseif ($this->logger) {
+        } elseif ($this->logger !== null) {
             $this->logger->debug(
                 'Dropping comment message',
                 ['comment' => $comment->getId(), 'state' => $comment->getState()]
