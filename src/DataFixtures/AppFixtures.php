@@ -52,7 +52,7 @@ class AppFixtures extends Fixture
         $admin->setUsername('admin');
         $admin->setPassword($this->passwordHasherFactory->getPasswordHasher(Admin::class)->hash('admin'));
         $manager->persist($admin);
-        
+
         $manager->flush();
     }
 }

@@ -19,7 +19,7 @@ final class Version20221230121244 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE comment ADD state VARCHAR(255) DEFAULT \'submitted\' NOT NULL');
+        $this->addSql("ALTER TABLE comment ADD state VARCHAR(255) DEFAULT 'submitted' NOT NULL");
         $this->addSql("UPDATE comment SET state='published'");
     }
 

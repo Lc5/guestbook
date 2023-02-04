@@ -22,6 +22,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class CommentRepository extends ServiceEntityRepository
 {
     final public const PAGINATOR_PER_PAGE = 2;
+
     private const DAYS_BEFORE_REJECTED_REMOVAL = 7;
 
     public function __construct(ManagerRegistry $registry)

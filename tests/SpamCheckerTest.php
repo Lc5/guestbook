@@ -17,6 +17,7 @@ class SpamCheckerTest extends TestCase
     {
         $comment = new Comment();
         $comment->setCreatedAtValue();
+
         $context = [];
 
         $client = new MockHttpClient([
@@ -46,6 +47,7 @@ class SpamCheckerTest extends TestCase
     {
         $comment = new Comment();
         $comment->setCreatedAtValue();
+
         $context = [];
 
         $response = new MockResponse('', ['response_headers' => ['x-akismet-pro-tip: discard']]);

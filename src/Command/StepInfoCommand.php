@@ -22,7 +22,7 @@ class StepInfoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $step = $this->cache->get('app.current_step', function ($item): string {
+        $step = $this->cache->get('app.current_step', static function ($item): string {
             $process = new Process(['git', 'tag', '-l', '--points-at', 'HEAD']);
             $process->mustRun();
             $item->expiresAfter(30);

@@ -59,6 +59,7 @@ class CommentMessageHandler
             if ($comment->getPhotoFilename()) {
                 $this->imageOptimizer->resize($this->photoDir . '/' . $comment->getPhotoFilename());
             }
+
             $this->commentStateMachine->apply($comment, 'optimize');
             $this->entityManager->flush();
         } elseif ($this->logger !== null) {
