@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Notifier;
 use Symfony\Component\Workflow\WorkflowInterface;
 
 #[AsMessageHandler]
@@ -27,7 +27,7 @@ class CommentMessageHandler
         private readonly CommentRepository $commentRepository,
         private readonly MessageBusInterface $bus,
         private readonly WorkflowInterface $commentStateMachine,
-        private readonly NotifierInterface $notifier,
+        private readonly Notifier $notifier,
         private readonly ImageOptimizer $imageOptimizer,
         #[Autowire('%photo_dir%')] private readonly string $photoDir,
         private readonly ?LoggerInterface $logger = null,

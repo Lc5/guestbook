@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Notification;
 
 use App\Entity\Comment;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Notifier\Bridge\Slack\Block\SlackActionsBlock;
 use Symfony\Component\Notifier\Bridge\Slack\Block\SlackDividerBlock;
 use Symfony\Component\Notifier\Bridge\Slack\Block\SlackSectionBlock;
@@ -63,10 +64,13 @@ class CommentReviewNotification extends Notification implements EmailNotificatio
     public function asEmailMessage(EmailRecipientInterface $recipient, string $transport = null): ?EmailMessage
     {
         $message = EmailMessage::fromNotification($this, $recipient);
-        $message->getMessage()
-            ->htmlTemplate('emails/comment_notification.html.twig')
-            ->context(['comment' => $this->comment])
-        ;
+        $rawMessage = $message->getMessage();
+
+        if ($rawMessage instanceof TemplatedEmail) {
+            $rawMessage
+                ->htmlTemplate('emails/comment_notification.html.twig')
+                ->context(['comment' => $this->comment]);
+        }
 
         return $message;
     }
