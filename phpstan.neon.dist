@@ -1,0 +1,10 @@
+parameters:
+  checkMissingIterableValueType: false
+  level: max
+  paths:
+    - bin
+    - config
+    - migrations
+    - public
+    - src
+    - tests

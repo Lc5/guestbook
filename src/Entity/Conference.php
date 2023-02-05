@@ -45,6 +45,9 @@ class Conference implements \Stringable
     #[Groups(['conference:list', 'conference:item'])]
     private ?bool $isInternational = null;
 
+    /**
+     * @var Collection<int,Comment>
+     */
     #[ORM\OneToMany(mappedBy: 'conference', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 

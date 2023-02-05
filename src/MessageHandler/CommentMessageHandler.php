@@ -34,7 +34,7 @@ class CommentMessageHandler
     ) {
     }
 
-    public function __invoke(CommentMessage $message)
+    public function __invoke(CommentMessage $message): void
     {
         $comment = $this->commentRepository->find($message->getId());
         if (!$comment instanceof Comment) {

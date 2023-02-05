@@ -21,7 +21,7 @@ class CommentCleanupCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->addOption('dry-run', null, InputOption::VALUE_NONE, 'Dry run')
