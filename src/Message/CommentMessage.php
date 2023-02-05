@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Message;
 
-namespace App\Message;
-
 class CommentMessage
 {
     public function __construct(
