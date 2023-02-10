@@ -6,7 +6,7 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionS
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return function (ECSConfig $ecsConfig): void {
+return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->paths([
         __DIR__ . '/bin',
         __DIR__ . '/config',
