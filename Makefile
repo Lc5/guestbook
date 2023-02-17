@@ -2,6 +2,8 @@ SHELL := /bin/bash
 
 setup:
 	symfony composer install
+	npm install
+	npm run build
 	make start
 	symfony console doctrine:database:create
 	symfony console doctrine:migrations:migrate -n
@@ -10,6 +12,8 @@ setup:
 update:
 	git pull
 	symfony composer install
+	npm install
+	npm run build
 	make restart
 	symfony console doctrine:migrations:migrate -n
 .PHONY: update
@@ -24,10 +28,7 @@ stop:
 	docker-compose down --remove-orphans
 .PHONY: stop
 
-restart:
-	symfony server:stop
-	docker-compose restart
-	symfony server:start -d
+restart: stop start
 .PHONY: restart
 
 test:
