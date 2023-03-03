@@ -40,7 +40,7 @@ class SpamCheckerTest extends TestCase
         $checker = new SpamChecker($client, 'abcde');
 
         $score = $checker->getSpamScore($comment, $context);
-        $this->assertSame($expectedScore, $score);
+        self::assertSame($expectedScore, $score);
     }
 
     public static function provideComments(): iterable

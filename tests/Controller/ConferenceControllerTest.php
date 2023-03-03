@@ -15,8 +15,8 @@ class ConferenceControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/en/');
 
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h2', 'Give your feedback');
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextContains('h2', 'Give your feedback');
     }
 
     public function testConferencePage(): void
@@ -28,10 +28,10 @@ class ConferenceControllerTest extends WebTestCase
 
         $client->clickLink('View');
 
-        $this->assertPageTitleContains('Amsterdam');
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h2', 'Amsterdam 2019');
-        $this->assertSelectorExists('div:contains("There is one comment")');
+        self::assertPageTitleContains('Amsterdam');
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextContains('h2', 'Amsterdam 2019');
+        self::assertSelectorExists('div:contains("There is one comment")');
     }
 
     public function testCommentSubmission(): void
@@ -44,7 +44,7 @@ class ConferenceControllerTest extends WebTestCase
             'comment_form[email]' => $email = 'me@automat.ed',
             'comment_form[photo]' => dirname(__DIR__, 2) . '/public/images/under-construction.gif',
         ]);
-        $this->assertResponseRedirects();
+        self::assertResponseRedirects();
 
         // simulate comment validation
         $comment = self::getContainer()->get(CommentRepository::class)->findOneByEmail($email);
@@ -52,6 +52,6 @@ class ConferenceControllerTest extends WebTestCase
         self::getContainer()->get(EntityManagerInterface::class)->flush();
 
         $client->followRedirect();
-        $this->assertSelectorExists('div:contains("There are 2 comments")');
+        self::assertSelectorExists('div:contains("There are 2 comments")');
     }
 }
