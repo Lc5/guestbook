@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\CommentRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -32,57 +33,57 @@ class Comment implements \Stringable
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[Groups(['comment:list', 'comment:item'])]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Groups(['comment:list', 'comment:item'])]
-    private ?string $author = null;
+    private string $author;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
     #[Groups(['comment:list', 'comment:item'])]
-    private ?string $text = null;
+    private string $text;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Email]
     #[Groups(['comment:list', 'comment:item'])]
-    private ?string $email = null;
+    private string $email;
 
     #[ORM\Column]
     #[Groups(['comment:list', 'comment:item'])]
-    private ?\DateTimeImmutable $createdAt = null;
+    private DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['comment:list', 'comment:item'])]
-    private ?Conference $conference = null;
+    private ?Conference $conference;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['comment:list', 'comment:item'])]
     private ?string $photoFilename = null;
 
     #[ORM\Column(length: 255, options: ['default' => 'submitted'])]
-    private ?string $state = 'submitted';
+    private string $state = 'submitted';
 
     public function __toString(): string
     {
-        return (string)$this->getEmail();
+        return $this->getEmail();
     }
 
     #[ORM\PrePersist]
     public function setCreatedAtValue(): void
     {
-        $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor(): string
     {
         return $this->author;
     }
@@ -94,7 +95,7 @@ class Comment implements \Stringable
         return $this;
     }
 
-    public function getText(): ?string
+    public function getText(): string
     {
         return $this->text;
     }
@@ -106,7 +107,7 @@ class Comment implements \Stringable
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -118,12 +119,12 @@ class Comment implements \Stringable
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -147,19 +148,19 @@ class Comment implements \Stringable
         return $this->photoFilename;
     }
 
-    public function setPhotoFilename(?string $photoFilename): self
+    public function setPhotoFilename(string $photoFilename): self
     {
         $this->photoFilename = $photoFilename;
 
         return $this;
     }
 
-    public function getState(): ?string
+    public function getState(): string
     {
         return $this->state;
     }
 
-    public function setState(?string $state): self
+    public function setState(string $state): self
     {
         $this->state = $state;
 

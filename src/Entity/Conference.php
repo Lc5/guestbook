@@ -31,19 +31,19 @@ class Conference implements \Stringable
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[Groups(['conference:list', 'conference:item'])]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
     #[Groups(['conference:list', 'conference:item'])]
-    private ?string $city = null;
+    private string $city;
 
     #[ORM\Column(length: 4)]
     #[Groups(['conference:list', 'conference:item'])]
-    private ?string $year = null;
+    private string $year;
 
     #[ORM\Column]
     #[Groups(['conference:list', 'conference:item'])]
-    private ?bool $isInternational = null;
+    private bool $isInternational;
 
     /**
      * @var Collection<int,Comment>
@@ -53,7 +53,7 @@ class Conference implements \Stringable
 
     #[ORM\Column(length: 255, unique: true)]
     #[Groups(['conference:list', 'conference:item'])]
-    private ?string $slug = null;
+    private string $slug;
 
     public function __construct()
     {
@@ -72,12 +72,12 @@ class Conference implements \Stringable
         }
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getCity(): ?string
+    public function getCity(): string
     {
         return $this->city;
     }
@@ -89,7 +89,7 @@ class Conference implements \Stringable
         return $this;
     }
 
-    public function getYear(): ?string
+    public function getYear(): string
     {
         return $this->year;
     }
@@ -101,7 +101,7 @@ class Conference implements \Stringable
         return $this;
     }
 
-    public function isIsInternational(): ?bool
+    public function isIsInternational(): bool
     {
         return $this->isInternational;
     }
@@ -141,7 +141,7 @@ class Conference implements \Stringable
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }

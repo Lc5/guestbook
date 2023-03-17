@@ -15,31 +15,28 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface, \Strin
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $username = null;
+    private string $username;
 
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string|null The hashed password
-     */
     #[ORM\Column]
-    private ?string $password = null;
+    private string $password;
 
     public function __toString(): string
     {
-        return (string) $this->username;
+        return $this->username;
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getUsername(): string
     {
         return $this->username;
     }
@@ -58,7 +55,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface, \Strin
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return $this->username;
     }
 
     /**
