@@ -58,7 +58,7 @@ class Comment implements \Stringable
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['comment:list', 'comment:item'])]
-    private ?Conference $conference;
+    private Conference $conference;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['comment:list', 'comment:item'])]
@@ -131,12 +131,12 @@ class Comment implements \Stringable
         return $this;
     }
 
-    public function getConference(): ?Conference
+    public function getConference(): Conference
     {
         return $this->conference;
     }
 
-    public function setConference(?Conference $conference): self
+    public function setConference(Conference $conference): self
     {
         $this->conference = $conference;
 

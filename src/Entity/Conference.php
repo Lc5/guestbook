@@ -48,7 +48,7 @@ class Conference implements \Stringable
     /**
      * @var Collection<int,Comment>
      */
-    #[ORM\OneToMany(mappedBy: 'conference', targetEntity: Comment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'conference', targetEntity: Comment::class, cascade: ['persist'], orphanRemoval: true)]
     private Collection $comments;
 
     #[ORM\Column(length: 255, unique: true)]
@@ -133,10 +133,7 @@ class Conference implements \Stringable
 
     public function removeComment(Comment $comment): self
     {
-        // set the owning side to null (unless already changed)
-        if ($this->comments->removeElement($comment) && $comment->getConference() === $this) {
-            $comment->setConference(null);
-        }
+        $this->comments->removeElement($comment);
 
         return $this;
     }
