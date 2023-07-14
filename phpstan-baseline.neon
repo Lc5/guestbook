@@ -1,0 +1,128 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Only booleans are allowed in an if condition, mixed given\\.$#"
+			count: 1
+			path: src/Command/CommentCleanupCommand.php
+
+		-
+			message: "#^Call to static method EasyCorp\\\\Bundle\\\\EasyAdminBundle\\\\Config\\\\MenuItem\\:\\:linkToRoute\\(\\) with incorrect case\\: linktoRoute$#"
+			count: 1
+			path: src/Controller/Admin/DashboardController.php
+
+		-
+			message: "#^Cannot call method setController\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Controller/Admin/DashboardController.php
+
+		-
+			message: "#^Only booleans are allowed in a negated boolean, string\\|null given\\.$#"
+			count: 1
+			path: src/Controller/AdminController.php
+
+		-
+			message: "#^Cannot call method getData\\(\\) on Symfony\\\\Component\\\\Form\\\\FormInterface\\|null\\.$#"
+			count: 1
+			path: src/Controller/ConferenceController.php
+
+		-
+			message: "#^Cannot call method guessExtension\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Controller/ConferenceController.php
+
+		-
+			message: "#^Cannot call method move\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Controller/ConferenceController.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, mixed given\\.$#"
+			count: 1
+			path: src/Controller/ConferenceController.php
+
+		-
+			message: "#^Only booleans are allowed in a negated boolean, string given\\.$#"
+			count: 1
+			path: src/Entity/Conference.php
+
+		-
+			message: """
+				#^Parameter \\$event of method App\\\\EntityListener\\\\ConferenceEntityListener\\:\\:prePersist\\(\\) has typehint with deprecated class Doctrine\\\\ORM\\\\Event\\\\LifecycleEventArgs\\:
+				This class will be removed in ORM 3\\.0\\. Use one of the dedicated classes instead\\.$#
+			"""
+			count: 1
+			path: src/EntityListener/ConferenceEntityListener.php
+
+		-
+			message: """
+				#^Parameter \\$event of method App\\\\EntityListener\\\\ConferenceEntityListener\\:\\:preUpdate\\(\\) has typehint with deprecated class Doctrine\\\\ORM\\\\Event\\\\LifecycleEventArgs\\:
+				This class will be removed in ORM 3\\.0\\. Use one of the dedicated classes instead\\.$#
+			"""
+			count: 1
+			path: src/EntityListener/ConferenceEntityListener.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Notifier\\\\NotifierInterface\\:\\:getAdminRecipients\\(\\)\\.$#"
+			count: 1
+			path: src/MessageHandler/CommentMessageHandler.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, string\\|null given\\.$#"
+			count: 1
+			path: src/MessageHandler/CommentMessageHandler.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, int\\|false given\\.$#"
+			count: 1
+			path: src/Notification/CommentReviewNotification.php
+
+		-
+			message: "#^Method App\\\\Repository\\\\CommentRepository\\:\\:countOldRejected\\(\\) should return int but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/CommentRepository.php
+
+		-
+			message: "#^Method App\\\\Repository\\\\CommentRepository\\:\\:deleteOldRejected\\(\\) should return int but returns mixed\\.$#"
+			count: 1
+			path: src/Repository/CommentRepository.php
+
+		-
+			message: """
+				#^Fetching class constant LAST_USERNAME of deprecated class Symfony\\\\Component\\\\Security\\\\Core\\\\Security\\:
+				since Symfony 6\\.2, use \\\\Symfony\\\\Bundle\\\\SecurityBundle\\\\Security instead$#
+			"""
+			count: 1
+			path: src/Security/AppAuthenticator.php
+
+		-
+			message: """
+				#^Fetching deprecated class constant LAST_USERNAME of class Symfony\\\\Component\\\\Security\\\\Core\\\\Security\\:
+				since Symfony 6\\.2, use \\\\Symfony\\\\Bundle\\\\SecurityBundle\\\\Security\\:\\:LAST_USERNAME instead$#
+			"""
+			count: 1
+			path: src/Security/AppAuthenticator.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, string\\|null given\\.$#"
+			count: 1
+			path: src/Security/AppAuthenticator.php
+
+		-
+			message: "#^Cannot call method findOneByEmail\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Controller/ConferenceControllerTest.php
+
+		-
+			message: "#^Cannot call method flush\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Controller/ConferenceControllerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 1
+			path: tests/Controller/ConferenceControllerTest.php
+
+		-
+			message: "#^Call to function method_exists\\(\\) with 'Symfony\\\\\\\\Component\\\\\\\\Dotenv\\\\\\\\Dotenv' and 'bootEnv' will always evaluate to true\\.$#"
+			count: 1
+			path: tests/bootstrap.php
