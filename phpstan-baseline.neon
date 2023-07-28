@@ -21,7 +21,7 @@ parameters:
 			path: src/Controller/AdminController.php
 
 		-
-			message: "#^Cannot call method getData\\(\\) on Symfony\\\\Component\\\\Form\\\\FormInterface\\|null\\.$#"
+			message: "#^Cannot call method getData\\(\\) on Symfony\\\\Component\\\\Form\\\\FormInterface\\<mixed\\>\\|null\\.$#"
 			count: 1
 			path: src/Controller/ConferenceController.php
 
@@ -121,8 +121,3 @@ parameters:
 			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
 			count: 1
 			path: tests/Controller/ConferenceControllerTest.php
-
-		-
-			message: "#^Call to function method_exists\\(\\) with 'Symfony\\\\\\\\Component\\\\\\\\Dotenv\\\\\\\\Dotenv' and 'bootEnv' will always evaluate to true\\.$#"
-			count: 1
-			path: tests/bootstrap.php
