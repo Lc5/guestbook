@@ -44,7 +44,7 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
       - name: "Composer install"
-        run: composer install --no-interaction --no-progress
+        run: composer install --no-interaction --no-progress --ansi
 
       - name: Install PHPUnit
         id: install
@@ -52,36 +52,36 @@ jobs:
 
       - name: Lint YAML files
         if: always() && steps.install.outcome == 'success'
-        run: ./bin/console lint:yaml config --parse-tags
+        run: ./bin/console lint:yaml config --parse-tags --ansi
 
       - name: Lint Twig templates
         if: always() && steps.install.outcome == 'success'
-        run: ./bin/console lint:twig templates --env=prod
+        run: ./bin/console lint:twig templates --env=prod --ansi
 
       - name: Lint XLIFF translations
         if: always() && steps.install.outcome == 'success'
-        run: ./bin/console lint:xliff translations
+        run: ./bin/console lint:xliff translations --ansi
 
       - name: Lint Parameters and Services
         if: always() && steps.install.outcome == 'success'
-        run: ./bin/console lint:container --no-debug
+        run: ./bin/console lint:container --no-debug --ansi
 
       - name: Lint Doctrine entities
         if: always() && steps.install.outcome == 'success'
-        run: ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
+        run: ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction --ansi
 
       - name: Lint Composer config
         if: always() && steps.install.outcome == 'success'
-        run: composer validate --strict
+        run: composer validate --strict --ansi
 
       - name: Check if any dependencies are compromised
         if: always() && steps.install.outcome == 'success'
-        run: composer audit
+        run: composer audit --ansi
 
       - name: Run coding standards check
         if: always() && steps.install.outcome == 'success'
-        run: ./vendor/bin/ecs
+        run: ./vendor/bin/ecs --ansi
 
       - name: Run PHPStan
         if: always() && steps.install.outcome == 'success'
-        run: ./vendor/bin/phpstan analyze
+        run: ./vendor/bin/phpstan analyze --ansi

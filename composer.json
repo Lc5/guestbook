@@ -1,4 +1,6 @@
 {
+    "name": "lc5/guestbook",
+    "description": "Example Symfony Project",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",

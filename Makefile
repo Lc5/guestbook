@@ -21,9 +21,12 @@ update:
 start:
 	docker-compose up -d --remove-orphans
 	symfony server:start -d
+	symfony console messenger:consume async -q &
 .PHONY: start
 
 stop:
+	symfony console messenger:stop-workers
+	sleep 2 # @todo figure out how to gracefully stop workers without using sleep
 	symfony server:stop
 	docker-compose down --remove-orphans
 .PHONY: stop
