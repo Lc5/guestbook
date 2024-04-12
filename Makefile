@@ -2,8 +2,6 @@ SHELL := /bin/bash
 
 setup:
 	symfony composer install
-	npm install
-	npm run build
 	make start
 	symfony console doctrine:database:create --if-not-exists
 	symfony console doctrine:migrations:migrate -n
@@ -12,23 +10,16 @@ setup:
 update:
 	git pull
 	symfony composer install
-	npm install
-	npm run build
 	make restart
 	symfony console doctrine:migrations:migrate -n
 .PHONY: update
 
 start:
-	docker-compose up -d --remove-orphans
 	symfony server:start -d
-	symfony console messenger:consume async -q &
 .PHONY: start
 
 stop:
-	symfony console messenger:stop-workers
-	sleep 2 # @todo figure out how to gracefully stop workers without using sleep
 	symfony server:stop
-	docker-compose down --remove-orphans
 .PHONY: stop
 
 restart: stop start
@@ -47,9 +38,9 @@ lint:
 	symfony php vendor/bin/phpstan --memory-limit=-1
 .PHONY: lint
 
-lint-fix:
+fix:
 	symfony php vendor/bin/ecs --fix
-.PHONY: lint-fix
+.PHONY: fix
 
 ci: lint test
 .PHONY: ci
