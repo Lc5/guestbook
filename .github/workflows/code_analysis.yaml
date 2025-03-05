@@ -35,37 +35,28 @@ jobs:
       - uses: "ramsey/composer-install@v3"
 
       - name: Lint YAML files
-        if: always() && steps.install.outcome == 'success'
         run: ./bin/console lint:yaml config --parse-tags --ansi
 
       - name: Lint Twig templates
-        if: always() && steps.install.outcome == 'success'
         run: ./bin/console lint:twig templates --env=prod --ansi
 
       - name: Lint XLIFF translations
-        if: always() && steps.install.outcome == 'success'
         run: ./bin/console lint:xliff translations --ansi
 
       - name: Lint Parameters and Services
-        if: always() && steps.install.outcome == 'success'
         run: ./bin/console lint:container --no-debug --ansi
 
       - name: Lint Doctrine entities
-        if: always() && steps.install.outcome == 'success'
         run: ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction --ansi
 
       - name: Lint Composer config
-        if: always() && steps.install.outcome == 'success'
         run: composer validate --strict --ansi
 
       - name: Check if any dependencies are compromised
-        if: always() && steps.install.outcome == 'success'
         run: composer audit --ansi
 
       - name: Run coding standards check
-        if: always() && steps.install.outcome == 'success'
         run: ./vendor/bin/ecs --ansi
 
       - name: Run PHPStan
-        if: always() && steps.install.outcome == 'success'
         run: ./vendor/bin/phpstan analyze --ansi
