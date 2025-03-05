@@ -32,23 +32,7 @@ jobs:
           php-version: ${{ matrix.php-version }}
           tools: composer:v2
 
-      - name: "Set composer cache directory"
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: "Cache composer"
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.lock') }}
-          restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
-
-      - name: "Composer install"
-        run: composer install --no-interaction --no-progress --ansi
-
-      - name: Install PHPUnit
-        id: install
-        run: vendor/bin/simple-phpunit install
+      - uses: "ramsey/composer-install@v3"
 
       - name: Lint YAML files
         if: always() && steps.install.outcome == 'success'

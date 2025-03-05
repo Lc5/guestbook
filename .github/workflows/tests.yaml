@@ -38,20 +38,7 @@ jobs:
       - name: "Add PHPUnit matcher"
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: "Set composer cache directory"
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-        shell: bash
-
-      - name: "Cache composer"
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.json') }}
-          restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
-
-      - name: "Install dependencies"
-        run: composer install --no-interaction --no-progress
+      - uses: "ramsey/composer-install@v3"
 
       - name: "Install PHPUnit"
         run: vendor/bin/simple-phpunit install
